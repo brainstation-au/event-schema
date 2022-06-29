@@ -1,0 +1,20 @@
+version: '3.9'
+services:
+  sh: &base
+    image: node:lts-alpine
+    volumes:
+      - .:/opt/code
+    working_dir: /opt/code
+    command: sh
+
+  install:
+    <<: *base
+    command: npm install
+
+  lint:
+    <<: *base
+    command: npm run lint
+
+  test:
+    <<: *base
+    command: npm test

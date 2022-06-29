@@ -1,0 +1,62 @@
+name: npm-publish
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  npm-publish:
+    name: Publish to NPM
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install nodejs
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Install packages
+        run: npm install
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Unit tests
+        run: npm test
+
+      - name: Compile
+        run: npm run compile
+
+      - name: Is a release commit?
+        id: release-commit
+        run: |
+          message=$(git log -1 --pretty=%B)
+          version=$(node ./version.js "$message")
+          echo "::set-output name=version::$version"
+
+      - name: Add a new release tag
+        id: release-tag
+        if: ${{ steps.release-commit.outputs.version }}
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          npm version ${{ steps.release-commit.outputs.version }}
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: NPM publish
+        if: ${{ steps.release-commit.outputs.version }}
+        run: |
+          npm config set @brainstationau:registry https://registry.npmjs.org/
+          npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_AUTH_TOKEN }}
+          npm publish
+
+      - name: NPM cleanup
+        if: ${{ always() }}
+        run: |
+          npm config delete //registry.npmjs.org/:_authToken
