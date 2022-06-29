@@ -1,6 +1,6 @@
 {
   "name": "@brainstationau/blue-team-events",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Blue team events",
   "main": "dist/index.js",
   "scripts": {
