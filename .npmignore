@@ -1,5 +1,6 @@
 .github/
 .vscode/
+aws/
 cloudevent-schema/
 coverage/
 node_modules/
