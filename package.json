@@ -3,6 +3,7 @@
   "version": "1.0.3",
   "description": "Blue team events",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "compile": "rm -rf dist && tsc -p tsconfig.app.json",
     "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet",
