@@ -1,7 +1,7 @@
 {
-  "name": "@brainstationau/blue-team-events",
-  "version": "1.0.4",
-  "description": "Blue team events",
+  "name": "@brainstationau/rea-event-schema",
+  "version": "0.0.1",
+  "description": "REA Event Schema",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/brainstation-au/blue-team-events.git"
+    "url": "git+https://github.com/brainstation-au/rea-event-schema.git"
   },
   "author": "brainstation@outlook.com.au",
   "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/brainstation-au/blue-team-events/issues"
+    "url": "https://github.com/brainstation-au/rea-event-schema/issues"
   },
-  "homepage": "https://github.com/brainstation-au/blue-team-events#readme",
+  "homepage": "https://github.com/brainstation-au/rea-event-schema#readme",
   "devDependencies": {
     "@types/eslint": "^8.4.3",
     "@types/jest": "^28.1.3",
