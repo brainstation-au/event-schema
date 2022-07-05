@@ -1,16 +1,17 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { ZodError } from 'zod';
-import { JobStateChange } from './zod';
+import { JobStateChange } from '.';
 
 describe('job state change', () => {
   test('parse a valid document', () => {
-    const data = JSON.parse(readFileSync(join(__dirname, 'example.json'), 'utf-8'));
+    const data = JSON.parse(readFileSync(join(__dirname, 'sample-event.json'), 'utf-8'));
     expect(JobStateChange.parse({
       ...data,
       extra: 'bar',
     })).toEqual({
       ...data,
+      time: new Date(data.time),
     });
   });
 
