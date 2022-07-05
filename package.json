@@ -2,8 +2,8 @@
   "name": "@brainstationau/rea-event-schema",
   "version": "0.0.4",
   "description": "REA Event Schema",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "compile": "rm -rf dist && tsc -p tsconfig.app.json",
     "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet",

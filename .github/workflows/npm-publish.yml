@@ -27,7 +27,7 @@ jobs:
         run: npm test
 
       - name: Compile
-        run: npm run compile
+        run: npm run compile -- --outDir .
 
       - name: Is a release commit?
         id: release-commit

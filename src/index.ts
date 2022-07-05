@@ -3,8 +3,6 @@ import { join, parse } from 'path';
 import { ZodObject } from 'zod';
 import zodToJsonSchema from 'zod-to-json-schema';
 
-export * from '.';
-
 function *walkSync(dir: string): Generator<string> {
   const files = readdirSync(dir, { withFileTypes: true });
   for (const file of files) {
