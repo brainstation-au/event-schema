@@ -28,11 +28,11 @@
     "eslint": "^8.18.0",
     "jest": "^28.1.1",
     "ts-jest": "^28.0.5",
-    "typescript": "^4.7.4",
-    "zod-to-json-schema": "^3.17.0"
+    "typescript": "^4.7.4"
   },
   "dependencies": {
     "@aws-sdk/client-eventbridge": "^3.121.0",
-    "zod": "^3.17.3"
+    "zod": "^3.17.3",
+    "zod-to-json-schema": "^3.17.0"
   }
 }
