@@ -4,7 +4,7 @@ import { putREAEvents } from '../../../common/put-rea-events';
 
 const source = 'rea:blue-team:service-a';
 const detailType = 'UserAccountActivity';
-const Action = z.enum([
+export const Action = z.enum([
   'USER_SIGNED_UP',
   'EMAIL_UPDATED',
   'MOBILE_UPDATED',
