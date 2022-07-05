@@ -1,4 +1,4 @@
-import { mkdirSync, readdirSync, writeFileSync } from 'fs';
+import { mkdirSync, readdirSync, writeFileSync, rmSync } from 'fs';
 import { join, parse } from 'path';
 import { ZodObject } from 'zod';
 import zodToJsonSchema from 'zod-to-json-schema';
@@ -16,9 +16,12 @@ function *walkSync(dir: string): Generator<string> {
 
 const generateAWSEventSchema = () => {
   const schemaDir = __dirname.replace(/src$/, 'cloudevent-schema');
+  rmSync(schemaDir, { recursive: true });
 
   for (const zodFile of walkSync(__dirname)) {
-    if (!zodFile.startsWith('common/') && (/\/index\.ts$/g).test(zodFile)) {
+    if (!zodFile.startsWith('common/')
+      && !(/src\/index\.ts$/g).test(zodFile)
+      && (/\/index\.ts$/g).test(zodFile)) {
       const schemaFile = zodFile.replace(__dirname, schemaDir).replace(/\/index\.ts$/g, '.json');
       mkdirSync(parse(schemaFile).dir, { recursive: true });
       import(zodFile)
