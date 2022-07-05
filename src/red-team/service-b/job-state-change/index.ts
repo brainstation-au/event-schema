@@ -4,7 +4,7 @@ import { putREAEvents } from '../../../common/put-rea-events';
 
 const source = 'rea:blue-team:service-a';
 const detailType = 'UserAccountActivity';
-const JobState = z.enum([
+export const JobState = z.enum([
   'SUBMITTED',
   'STARTED',
   'COMPLETED',
