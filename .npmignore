@@ -1,6 +1,7 @@
 .github/
 .vscode/
 coverage/
+event-schema/
 node_modules/
 src/
 .eslintignore
