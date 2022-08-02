@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { REAEvent } from '../../../common/rea-event';
+import { REAEvent } from '../../common/rea-event';
 
 const Action = z.enum([
   'USER_SIGNED_UP',

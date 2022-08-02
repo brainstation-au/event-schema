@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { REAEvent } from '../../../common/rea-event';
+import { REAEvent } from '../../common/rea-event';
 
 const JobState = z.enum([
   'SUBMITTED',
