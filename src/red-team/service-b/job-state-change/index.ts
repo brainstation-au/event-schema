@@ -1,10 +1,7 @@
 import { z } from 'zod';
-import { AWSEvent } from '../../../common/aws-event';
-import { putREAEvents } from '../../../common/put-rea-events';
+import { REAEvent } from '../../../common/rea-event';
 
-const source = 'rea:blue-team:service-a';
-const detailType = 'UserAccountActivity';
-export const JobState = z.enum([
+const JobState = z.enum([
   'SUBMITTED',
   'STARTED',
   'COMPLETED',
@@ -16,21 +13,21 @@ const Parameter = z.object({
   value: z.union([z.string(), z.number()]),
 });
 
-export const JobStateChangeDetail = z.object({
+const JobStateChangeDetail = z.object({
   jobname: z.string(),
   jobid: z.string().uuid(),
   state: JobState,
   parameters: z.array(Parameter),
 });
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
-export type JobStateChangeDetail = z.infer<typeof JobStateChangeDetail>;
+class JobStateChangeClass extends REAEvent<z.infer<typeof JobStateChangeDetail>> {
+  readonly source = 'rea:blue-team:service-a';
+  readonly type = 'UserAccountActivity';
+  readonly jobStates = JobState.enum;
 
-export const JobStateChange = AWSEvent(source, detailType, JobStateChangeDetail);
+  public constructor() {
+    super(JobStateChangeDetail);
+  }
+}
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
-export type JobStateChange = z.infer<typeof JobStateChange>;
-
-export const putJobStateChange = putREAEvents<JobStateChangeDetail>(source, detailType);
-
-export default JobStateChange;
+export const JobStateChange = new JobStateChangeClass();

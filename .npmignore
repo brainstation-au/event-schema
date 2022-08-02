@@ -1,6 +1,5 @@
 .github/
 .vscode/
-cloudevent-schema/
 coverage/
 node_modules/
 src/
