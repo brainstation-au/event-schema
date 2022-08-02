@@ -16,7 +16,7 @@ const UserAccountActivityDetail = z.object({
 });
 
 class UserAccountActivityClass extends AWSEvent<z.infer<typeof UserAccountActivityDetail>> {
-  readonly source = 'rea:blue-team:service-a';
+  readonly source = 'service-a';
   readonly type = 'UserAccountActivity';
   readonly actions = Action.enum;
 

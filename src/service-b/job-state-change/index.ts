@@ -21,7 +21,7 @@ const JobStateChangeDetail = z.object({
 });
 
 class JobStateChangeClass extends AWSEvent<z.infer<typeof JobStateChangeDetail>> {
-  readonly source = 'rea:blue-team:service-a';
+  readonly source = 'service-b';
   readonly type = 'UserAccountActivity';
   readonly jobStates = JobState.enum;
 
