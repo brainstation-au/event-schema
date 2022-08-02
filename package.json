@@ -1,7 +1,7 @@
 {
-  "name": "@brainstationau/rea-event-schema",
+  "name": "@brainstationau/event-schema",
   "version": "0.0.10",
-  "description": "REA Event Schema",
+  "description": "Event Schema",
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/brainstation-au/rea-event-schema.git"
+    "url": "git+https://github.com/brainstation-au/event-schema.git"
   },
   "author": "brainstation@outlook.com.au",
   "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/brainstation-au/rea-event-schema/issues"
+    "url": "https://github.com/brainstation-au/event-schema/issues"
   },
-  "homepage": "https://github.com/brainstation-au/rea-event-schema#readme",
+  "homepage": "https://github.com/brainstation-au/event-schema#readme",
   "devDependencies": {
     "@types/eslint": "^8.4.3",
     "@types/jest": "^28.1.3",

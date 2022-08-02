@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { REAEvent } from '../../common/rea-event';
+import { AWSEvent } from '../../common/aws-event';
 
 const JobState = z.enum([
   'SUBMITTED',
@@ -20,7 +20,7 @@ const JobStateChangeDetail = z.object({
   parameters: z.array(Parameter),
 });
 
-class JobStateChangeClass extends REAEvent<z.infer<typeof JobStateChangeDetail>> {
+class JobStateChangeClass extends AWSEvent<z.infer<typeof JobStateChangeDetail>> {
   readonly source = 'rea:blue-team:service-a';
   readonly type = 'UserAccountActivity';
   readonly jobStates = JobState.enum;

@@ -1,11 +1,11 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { z } from 'zod';
-import { REAEvent } from './rea-event';
+import { AWSEvent } from './aws-event';
 
 describe('aws event construct', () => {
   const Detail = z.object({ foo: z.literal('bar') });
-  class TestEvent extends REAEvent<z.infer<typeof Detail>> {
+  class TestEvent extends AWSEvent<z.infer<typeof Detail>> {
     readonly source = 'random-source';
     readonly type = 'some-type';
     public constructor() {

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { REAEvent } from '../../common/rea-event';
+import { AWSEvent } from '../../common/aws-event';
 
 const Action = z.enum([
   'USER_SIGNED_UP',
@@ -15,7 +15,7 @@ const UserAccountActivityDetail = z.object({
   action: Action,
 });
 
-class UserAccountActivityClass extends REAEvent<z.infer<typeof UserAccountActivityDetail>> {
+class UserAccountActivityClass extends AWSEvent<z.infer<typeof UserAccountActivityDetail>> {
   readonly source = 'rea:blue-team:service-a';
   readonly type = 'UserAccountActivity';
   readonly actions = Action.enum;

@@ -7,7 +7,7 @@ import {
 } from '@aws-sdk/client-eventbridge';
 import { DateTime } from './date-time';
 
-export abstract class REAEvent<T> {
+export abstract class AWSEvent<T> {
   readonly region = 'ap-southeast-2';
   readonly abstract source: string;
   readonly abstract type: string;
