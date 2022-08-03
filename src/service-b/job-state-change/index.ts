@@ -1,7 +1,10 @@
 import { z } from 'zod';
 import { AWSEvent } from '../../common/aws-event';
+import { putREAEvents } from '../../common/put-rea-events';
 
-const JobState = z.enum([
+const source = 'rea:blue-team:service-a';
+const detailType = 'UserAccountActivity';
+export const JobState = z.enum([
   'SUBMITTED',
   'STARTED',
   'COMPLETED',
@@ -13,21 +16,15 @@ const Parameter = z.object({
   value: z.union([z.string(), z.number()]),
 });
 
-const JobStateChangeDetail = z.object({
+export const JobStateChangeDetail = z.object({
   jobname: z.string(),
   jobid: z.string().uuid(),
   state: JobState,
   parameters: z.array(Parameter),
 });
 
-class JobStateChangeClass extends AWSEvent<z.infer<typeof JobStateChangeDetail>> {
-  readonly source = 'service-b';
-  readonly type = 'UserAccountActivity';
-  readonly jobStates = JobState.enum;
+export const JobStateChange = AWSEvent(source, detailType, JobStateChangeDetail);
 
-  public constructor() {
-    super(JobStateChangeDetail);
-  }
-}
+export const putJobStateChange = putREAEvents<z.infer<typeof JobStateChangeDetail>>(source, detailType);
 
-export const JobStateChange = new JobStateChangeClass();
+export default JobStateChange;

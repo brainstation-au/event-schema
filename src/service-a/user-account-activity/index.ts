@@ -1,28 +1,25 @@
 import { z } from 'zod';
 import { AWSEvent } from '../../common/aws-event';
+import { putREAEvents } from '../../common/put-rea-events';
 
-const Action = z.enum([
+const source = 'rea:blue-team:service-a';
+const detailType = 'UserAccountActivity';
+export const Action = z.enum([
   'USER_SIGNED_UP',
   'EMAIL_UPDATED',
   'MOBILE_UPDATED',
   'RECOVERY_REQUESTED',
 ]);
 
-const UserAccountActivityDetail = z.object({
+export const UserAccountActivityDetail = z.object({
   userid: z.string().uuid(),
   email: z.string().email(),
   mobile: z.string(),
   action: Action,
 });
 
-class UserAccountActivityClass extends AWSEvent<z.infer<typeof UserAccountActivityDetail>> {
-  readonly source = 'service-a';
-  readonly type = 'UserAccountActivity';
-  readonly actions = Action.enum;
+export const UserAccountActivity = AWSEvent(source, detailType, UserAccountActivityDetail);
 
-  public constructor() {
-    super(UserAccountActivityDetail);
-  }
-}
+export const putUserAccountActivity = putREAEvents<z.infer<typeof UserAccountActivityDetail>>(source, detailType);
 
-export const UserAccountActivity = new UserAccountActivityClass();
+export default UserAccountActivity;

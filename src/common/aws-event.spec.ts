@@ -5,17 +5,9 @@ import { AWSEvent } from './aws-event';
 
 describe('aws event construct', () => {
   const Detail = z.object({ foo: z.literal('bar') });
-  class TestEvent extends AWSEvent<z.infer<typeof Detail>> {
-    readonly source = 'random-source';
-    readonly type = 'some-type';
-    public constructor() {
-      super(Detail);
-    }
-  }
-
   test('parse a valid event document', () => {
     const data = JSON.parse(readFileSync(join(__dirname, 'aws-event-sample.json'), 'utf-8'));
-    expect((new TestEvent()).parseEvent({
+    expect(AWSEvent('random-source', 'some-type', Detail).parse({
       ...data,
       extra: 'bar',
     })).toEqual({
@@ -25,7 +17,7 @@ describe('aws event construct', () => {
   });
 
   test('parse an invalid event document', () => {
-    expect(() => (new TestEvent()).parseEvent({
+    expect(() => AWSEvent('some-source', 'random-type', Detail).parse({
       jobname: 'foo',
       jobid: '4f4b5803-5885-4aa8-9c39-97fbf52a67b8',
       state: 'SUBMITTED',

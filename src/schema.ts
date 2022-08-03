@@ -8,12 +8,12 @@ const zodTypes = [
   {
     service: 'service-a',
     eventName: 'UserAccountActivity',
-    zodType: UserAccountActivity.zodEventType(),
+    zodType: UserAccountActivity,
   },
   {
     service: 'service-b',
     eventName: 'JobStateChange',
-    zodType: JobStateChange.zodEventType(),
+    zodType: JobStateChange,
   },
 ];
 
