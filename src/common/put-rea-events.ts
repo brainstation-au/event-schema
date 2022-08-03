@@ -5,7 +5,7 @@ import {
   PutEventsRequestEntry,
 } from '@aws-sdk/client-eventbridge';
 
-export const putREAEvents = <T>(source: string, detailType: string) => async (
+export const putEvents = <T>(source: string, detailType: string) => async (
   details: T[],
   eventBusArn: string,
   resources?: string[],

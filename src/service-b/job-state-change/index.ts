@@ -1,9 +1,9 @@
 import { z } from 'zod';
 import { AWSEvent } from '../../common/aws-event';
-import { putREAEvents } from '../../common/put-rea-events';
+import { putEvents } from '../../common/put-rea-events';
 
-const source = 'rea:blue-team:service-a';
-const detailType = 'UserAccountActivity';
+const source = 'rea:service-b';
+const detailType = 'JobStateChange';
 export const JobState = z.enum([
   'SUBMITTED',
   'STARTED',
@@ -25,6 +25,6 @@ export const JobStateChangeDetail = z.object({
 
 export const JobStateChange = AWSEvent(source, detailType, JobStateChangeDetail);
 
-export const putJobStateChange = putREAEvents<z.infer<typeof JobStateChangeDetail>>(source, detailType);
+export const putJobStateChange = putEvents<z.infer<typeof JobStateChangeDetail>>(source, detailType);
 
 export default JobStateChange;

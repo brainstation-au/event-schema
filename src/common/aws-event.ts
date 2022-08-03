@@ -11,7 +11,7 @@ export const AWSEvent = <T>(
     id: z.string(),
     'detail-type': z.literal(detailType),
     source: z.literal(source),
-    account: z.string().regex(/^\d{12}$/g),
+    account: z.string().regex(/^\d{12}$/),
     time: DateTime,
     region: z.literal(region),
     resources: z.string().array(),
