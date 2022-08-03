@@ -1,1 +1,1 @@
-export { Action, UserAccountActivityDetail, UserAccountActivity } from './user-account-activity';
+export { Action, putUserAccountActivity, UserAccountActivity, UserAccountActivityDetail } from './user-account-activity';

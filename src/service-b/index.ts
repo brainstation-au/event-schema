@@ -1,1 +1,1 @@
-export { JobState, JobStateChange, JobStateChangeDetail } from './job-state-change';
+export { JobState, JobStateChange, JobStateChangeDetail, putJobStateChange } from './job-state-change';
